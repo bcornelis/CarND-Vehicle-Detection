@@ -15,13 +15,11 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
+[image1]: ./writeup_media/samples_vehicle_non_vehicle.png
+[hog_channels]: ./writeup_media/hog_different_channels.png
+[hog_orientations]: ./writeup_media/hog_different_orientations.png
+[hog_cell_per_block]: ./writeup_media/hog_different_cell_per_block.png
+[hog_pixels_per_cell]: ./writeup_media/hog_different_pixels_per_cell.png
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -38,7 +36,7 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the last code cell of the IPython notebook in the method named get_hog_features and it implements the logic as specified in the course.  
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
@@ -46,10 +44,14 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
-
-
-![alt text][image2]
+Here is an example using the `RGB` color space and HOG parameters of `orientations=[4,8,16,32]`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`, `channel=0` :
+![alt text][hog_orientations]
+For `orientations=[8]`, `pixels_per_cell=(4,8,16,36)` and `cells_per_block=(2, 2)`, `channel=0` :
+![alt text][hog_pixels_per_cell]
+For `orientations=[8]`, `pixels_per_cell=(4)` and `cells_per_block=[2,4,6,8]`, `channel=0` :
+![alt text][hog_cell_per_block]
+For `orientations=[8]`, `pixels_per_cell=(8)` and `cells_per_block=(2,2)`, `channel=[0,1,2]` :
+![alt text][hog_channels]
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
